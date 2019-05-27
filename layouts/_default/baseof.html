@@ -1,0 +1,15 @@
+<!doctype html>
+<html class="no-js" lang="{{ .Site.LanguageCode | default "en-us" }}" prefix="og: http://ogp.me/ns#">
+  {{ partial "head.html" . }}
+  <body>
+    {{ partial "nav.html" . }}
+    <div class="container">
+      <main id="main" role="main">
+       {{ block "main" . }}{{ end }}
+      </main>
+    </div>
+    {{ partial "footer.html" . }}
+
+    {{ partial "scripts" . }}
+  </body>
+</html>

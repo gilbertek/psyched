@@ -1,0 +1,9 @@
+<div id="nav-border" class="container">
+  <nav role="navigation">
+		<ul>
+			{{ range .Site.Menus.main }}
+				<li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
+			{{ end }}
+		</ul>
+	</nav>
+</div>

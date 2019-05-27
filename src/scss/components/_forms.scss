@@ -1,0 +1,35 @@
+form {
+    label {
+
+    }
+    input, textarea {
+        border: 1px solid #ddd;
+        padding: 1rem;
+        font-size: 1.25rem;
+        color: #333;
+        font-weight: 300;
+        width: calc(100% - 2rem);
+        margin: 1rem 0;
+        &:focus {
+            box-shadow: 0 0 8px 1px rgba(0,0,0,.1);
+            outline: none;
+        }
+    }
+    input {
+
+    }
+    textarea {
+
+    }
+    input[type="submit"] {
+        width: auto;
+        appearance: none;
+        border: none;
+        // background-color: transparent;
+        // margin: 0;
+        // padding: 0;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+  }

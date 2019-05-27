@@ -1,0 +1,25 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "My New Hugo Site"
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+[permalinks]
+  blog = "/:filename/"
+
+[menu]
+  [[menu.main]]
+    name = "Home"
+    pre = "home"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    name = "About Us"
+    pre = "edit"
+    url = "/about/"
+    weight = 2
+
+[params]
+  homeText = "You just made a Hugo blog from scratch."
