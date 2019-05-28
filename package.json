@@ -9,7 +9,8 @@
     "watch:hugo": "hugo server --buildDrafts --buildExpired --buildFuture",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "concurrently \"npm run watch:hugo\" \"npm run assets:development\"",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "eslint-check": "eslint --print-config . | eslint-config-prettier-check"
   },
   "keywords": [],
   "author": "",
@@ -34,10 +35,11 @@
     "postcss-loader": "^3.0.0",
     "prettier": "^1.17.1",
     "sass-loader": "^7.1.0",
+    "stylelint": "^10.0.1",
+    "stylelint-config-prettier": "^5.2.0",
     "stylelint-prettier": "^1.1.0",
     "uglifyjs-webpack-plugin": "^2.1.3",
     "webpack": "^4.32.2",
-    "webpack-cli": "^3.3.2",
-    "webpack-dev-server": "^3.4.1"
+    "webpack-cli": "^3.3.2"
   }
 }
