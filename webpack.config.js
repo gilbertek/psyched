@@ -1,8 +1,12 @@
 const { resolve } = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const glob = require('glob');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const PurgecssPlugin = require('purgecss-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = (options = {}) => {
   const isProduction = options.mode === 'production';
@@ -13,7 +17,9 @@ module.exports = (options = {}) => {
     devtool: sourceMap,
     target: 'node',
     watch: true,
-    entry: { app: ['./js/app'] },
+    entry: {
+      app: ['./js/app']
+    },
     output: {
       path: resolve(__dirname, './static/assets'),
       filename: 'js/[name].js',
@@ -22,25 +28,32 @@ module.exports = (options = {}) => {
     module: {
       rules: [
         {
-          test: /\.js$ /,
-          exclude: /node_modules/,
-          use: {
-            loader: 'babel-loader'
-          }
+          test: /\.((png)|(eot)|(woff)|(woff2)|(ttf)|(svg)|(gif))(\?v=\d+\.\d+\.\d+)?$/,
+          loader: 'file-loader?name=/[hash].[ext]'
         },
+
+        { test: /\.json$/, loader: 'json-loader' },
+
         {
-          test: /\.(css|scss)$/,
+          loader: 'babel-loader',
+          test: /\.js?$/,
+          exclude: /node_modules/,
+          query: { cacheDirectory: true }
+        },
+
+        {
+          test: /\.(sa|sc|c)ss$/,
+          exclude: /node_modules/,
           use: [
+            'style-loader',
             MiniCssExtractPlugin.loader,
             'css-loader',
-            {
-              loader: 'postcss-loader'
-            },
-            {
-              loader: 'sass-loader'
-            }
+            'postcss-loader',
+            'sass-loader'
           ]
         },
+
+        /*
         {
           test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
           use: {
@@ -52,15 +65,39 @@ module.exports = (options = {}) => {
           }
         },
         {
-          test: /\.(png|jpe?g|gif|svg|ico)(\?v=.+)?$/,
-          exclude: /(\/fonts|webfonts)/,
-          use: {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'images/'
-            }
+        test: /\.(png|jpe?g|gif|svg|ico)(\?v=.+)?$/,
+        exclude: /(\/fonts|webfonts)/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'images/'
           }
+        }
+      },
+        {
+          test: /\.(png|jp(e*)g|svg)$/,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[name].[ext]',
+                limit: 8000,
+                outputPath: 'img/'
+              }
+            }
+          ]
+        }, */
+        {
+          test: /\.html$/,
+          use: [
+            {
+              loader: 'html-loader',
+              options: {
+                minimize: true
+              }
+            }
+          ]
         }
       ]
     },
@@ -69,14 +106,37 @@ module.exports = (options = {}) => {
       hot: true,
       open: true
     },
+    optimization: {
+      minimizer: [
+        new TerserPlugin({
+          sourceMap: true,
+          parallel: true
+        })
+      ]
+    },
     plugins: [
       new CleanWebpackPlugin(),
       new MiniCssExtractPlugin({
-        filename: 'css/[name].css'
+        filename: 'css/[name].css',
+        chunkFilename: 'css/[id].[hash:5].css'
       }),
+      new CopyWebpackPlugin([
+        {
+          from: './fonts/',
+          to: 'fonts/',
+          flatten: true
+        }
+      ]),
       new UglifyJsPlugin({
-        uglifyOptions: { output: { comments: false } }
+        uglifyOptions: {
+          output: {
+            comments: false
+          }
+        }
       })
+      // new PurgecssPlugin({
+      //   paths: glob.sync('src/*')
+      // })
     ]
   };
 };

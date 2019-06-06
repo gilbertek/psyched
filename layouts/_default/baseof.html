@@ -1,15 +1,18 @@
 <!doctype html>
 <html class="no-js" lang="{{ .Site.LanguageCode | default "en-us" }}" prefix="og: http://ogp.me/ns#">
-  {{ partial "head.html" . }}
-  <body>
-    {{ partial "nav.html" . }}
-    <div class="container">
+{{ partial "head.html" . }}
+
+<body>
+  {{ partial "nav.html" . }}
+  <section class="section">
+    <div class="container is-fluid">
       <main id="main" role="main">
-       {{ block "main" . }}{{ end }}
+        {{ block "main" . }}{{ end }}
       </main>
     </div>
-    {{ partial "footer.html" . }}
+  </section>
+  {{ partial "footer.html" . }}
+  {{ partial "scripts" . }}
+</body>
 
-    {{ partial "scripts" . }}
-  </body>
 </html>

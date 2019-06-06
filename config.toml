@@ -1,6 +1,6 @@
 baseURL = "http://example.org/"
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "Prosightful"
 
 [taxonomies]
   category = "categories"
@@ -22,4 +22,4 @@ title = "My New Hugo Site"
     weight = 2
 
 [params]
-  homeText = "You just made a Hugo blog from scratch."
+  homeText = ""
