@@ -1,7 +1,7 @@
 <nav role="navigation" aria-label="main navigation" class="navbar is-transparent main-nav">
   <div class="container">
     <div class="navbar-brand">
-      <a href="{{ .Site.BaseURL }}" class="navbar-item">Prosightfull</a>
+      <a href="{{ .Site.BaseURL }}" class="navbar-item" title="{{ .Site.Title }}">{{.Site.Title}}</a>
       <a role="button" id="nav-toggle" aria-label="menu" aria-expanded="false" data-target="ps-navbar"
         class="navbar-burger burger">
         <span aria-hidden="true"></span>
@@ -11,9 +11,12 @@
     </div>
     <div id="navbar-prosightful" class="navbar-menu">
       <div class="navbar-end">
+        {{ $currentPage := . }}
         {{ range .Site.Menus.main }}
         <div class="navbar-item">
-          <a class="navbar-link is-arrowless" href="{{ .URL | relURL }}">{{ .Name }}</a>
+          <a class="navbar-link is-arrowless {{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}" href="{{.URL}}" title="{{ .Title }}">
+            {{ .Name }}
+          </a>
         </div>
         {{ end }}
       </div>

@@ -6,6 +6,7 @@ weight: 30
 description: 'Meta Description about the Contact Page'
 ---
 
+<section class="section">
 <div class="container contact-us">
     <form action="">
         <div class="columns">
@@ -31,3 +32,4 @@ description: 'Meta Description about the Contact Page'
         </div>
     </form>
 </div>
+</section>

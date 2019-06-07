@@ -2,24 +2,34 @@ baseURL = "http://example.org/"
 languageCode = "en-us"
 title = "Prosightful"
 
+relativeURLs = true
+canonifyURLs = true
+
 [taxonomies]
   category = "categories"
   tag = "tags"
 
 [permalinks]
-  blog = "/:filename/"
+  posts = "/:filename/"
+  pages = "/:filename/"
+  tags = "/tag/:slug/"
 
 [menu]
   [[menu.main]]
     name = "Home"
-    pre = "home"
+    identifier = "home"
     url = "/"
     weight = 1
   [[menu.main]]
     name = "About Us"
-    pre = "edit"
+    identifier = "about"
     url = "/about/"
     weight = 2
 
 [params]
-  homeText = ""
+  description="My home on the internet"
+
+[outputFormats]
+  [outputFormats.RSS]
+  mediatype = "application/rss"
+  baseName = "feed"

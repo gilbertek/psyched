@@ -4,14 +4,12 @@
 
 <body>
   {{ partial "nav.html" . }}
-  <section class="section">
-    <div class="container is-fluid">
-      <main id="main" role="main">
-        {{ block "main" . }}{{ end }}
-      </main>
-    </div>
-  </section>
-  {{ partial "footer.html" . }}
+
+  {{ block "main" . }}
+  <!-- The part of the page that begins to differ between templates -->
+  {{ end }}
+
+  {{ partialCached "footer.html" . }}
   {{ partial "scripts" . }}
 </body>
 

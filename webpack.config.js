@@ -1,6 +1,5 @@
 const { resolve } = require('path');
 const glob = require('glob');
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -21,26 +20,26 @@ module.exports = (options = {}) => {
       app: ['./js/app']
     },
     output: {
-      path: resolve(__dirname, './static/assets'),
+      path: resolve(__dirname, 'static'),
       filename: 'js/[name].js',
-      publicPath: '/assets/'
+      publicPath: '/static/'
+    },
+    resolve: {
+      extensions: ['.js', '.jsx', '.json', 'jpg', 'png'],
+    },
+    performance: {
+      hints: 'warning',
     },
     module: {
       rules: [
         {
-          test: /\.((png)|(eot)|(woff)|(woff2)|(ttf)|(svg)|(gif))(\?v=\d+\.\d+\.\d+)?$/,
-          loader: 'file-loader?name=/[hash].[ext]'
-        },
-
-        { test: /\.json$/, loader: 'json-loader' },
-
-        {
-          loader: 'babel-loader',
-          test: /\.js?$/,
+          test: /\.js$/,
           exclude: /node_modules/,
-          query: { cacheDirectory: true }
+          use: {
+            loader: 'babel-loader',
+          },
         },
-
+        { test: /\.json$/, loader: 'json-loader' },
         {
           test: /\.(sa|sc|c)ss$/,
           exclude: /node_modules/,
@@ -52,29 +51,6 @@ module.exports = (options = {}) => {
             'sass-loader'
           ]
         },
-
-        /*
-        {
-          test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-          use: {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'fonts/'
-            }
-          }
-        },
-        {
-        test: /\.(png|jpe?g|gif|svg|ico)(\?v=.+)?$/,
-        exclude: /(\/fonts|webfonts)/,
-        use: {
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-            outputPath: 'images/'
-          }
-        }
-      },
         {
           test: /\.(png|jp(e*)g|svg)$/,
           use: [
@@ -83,11 +59,23 @@ module.exports = (options = {}) => {
               options: {
                 name: '[name].[ext]',
                 limit: 8000,
-                outputPath: 'img/'
-              }
-            }
-          ]
-        }, */
+                outputPath: './images/',
+              },
+            },
+          ],
+        },
+        {
+          test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[name].[ext]',
+                outputPath: 'font/',
+              },
+            },
+          ],
+        },
         {
           test: /\.html$/,
           use: [
@@ -102,9 +90,12 @@ module.exports = (options = {}) => {
       ]
     },
     devServer: {
-      contentBase: (__dirname, './public'),
       hot: true,
-      open: true
+      open: true,
+      inline: true,
+      compress: true,
+      stats: 'minimal',
+      host: '0.0.0.0'
     },
     optimization: {
       minimizer: [
@@ -125,6 +116,10 @@ module.exports = (options = {}) => {
           from: './fonts/',
           to: 'fonts/',
           flatten: true
+        },
+        {
+          from: 'images/',
+          to: 'images/'
         }
       ]),
       new UglifyJsPlugin({
@@ -133,10 +128,12 @@ module.exports = (options = {}) => {
             comments: false
           }
         }
+      }),
+      new PurgecssPlugin({
+        paths: glob.sync(resolve(__dirname, './static/**/*'), {
+          nodir: true
+        })
       })
-      // new PurgecssPlugin({
-      //   paths: glob.sync('src/*')
-      // })
     ]
   };
 };
