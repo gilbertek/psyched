@@ -1,5 +1,6 @@
 {{ define "main" }}
-
+<div class="section">
+  <div class="container">
   <h1 class="title">
     {{ .Title | markdownify }}
   </h1>
@@ -18,4 +19,6 @@
       {{ .Content }}
   </article>
 
+  </div>
+</div>
 {{ end }}

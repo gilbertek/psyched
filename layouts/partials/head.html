@@ -10,7 +10,7 @@
 	{{ with .Site.Params.author }}
   <meta name="author" content="{{ . }}">{{ end }}
 
-  <link rel="canonical" href="{{ .URL | absLangURL }}" />
+  <link rel="canonical" href="{{ .Site.BaseURL | absLangURL }}" />
 
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>

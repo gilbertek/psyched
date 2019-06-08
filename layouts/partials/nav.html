@@ -14,7 +14,7 @@
         {{ $currentPage := . }}
         {{ range .Site.Menus.main }}
         <div class="navbar-item">
-          <a class="navbar-link is-arrowless {{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}" href="{{.URL}}" title="{{ .Title }}">
+          <a class="navbar-link is-arrowless {{ if $currentPage.IsMenuCurrent "main" . }}active{{ end }}" href="{{ .URL }}" title="{{ .Title }}">
             {{ .Name }}
           </a>
         </div>
