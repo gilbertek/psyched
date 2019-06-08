@@ -12,7 +12,12 @@
     "require": true,
     "process": true,
     "ENV": true,
-    "module": true
+    "module": true,
+    "window": true,
+    "fetch": true,
+    "self": true,
+    "requestAnimationFrame": true,
+    "document": true
   },
   "parserOptions": {
     "ecmaVersion": 2018,

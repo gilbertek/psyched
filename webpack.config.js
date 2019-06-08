@@ -1,6 +1,5 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
-const glob = require('glob');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -20,9 +19,9 @@ module.exports = (options = {}) => {
       app: ['./js/app']
     },
     output: {
-      path: resolve(__dirname, 'static'),
+      path: resolve(__dirname, 'static', 'assets'),
       filename: 'js/[name].js',
-      publicPath: '/static/'
+      publicPath: 'assets'
     },
     resolve: {
       extensions: ['.wasm', '.js', '.jsx', '.json', 'jpg', 'png'],
@@ -52,14 +51,12 @@ module.exports = (options = {}) => {
           ]
         },
         {
-          test: /\.(png|jp(e*)g|svg)$/,
+          test: /\.(png|jp(e*)g|gif|svg)$/i,
           use: [
             {
               loader: 'file-loader',
               options: {
-                name: '[name].[ext]',
-                limit: 8000,
-                outputPath: './images/',
+                limit: 8192,
               },
             },
           ],
@@ -68,10 +65,9 @@ module.exports = (options = {}) => {
           test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
           use: [
             {
-              loader: 'file-loader',
+              loader: 'url-loader',
               options: {
-                name: '[name].[ext]',
-                outputPath: 'font/',
+                limit: 8192,
               },
             },
           ],
@@ -81,7 +77,7 @@ module.exports = (options = {}) => {
           loader: 'url-loader',
           options: {
             limit: 10240,
-            name: '/media/[name].[hash:8].[ext]'
+            name: '[name].[hash:8].[ext]'
           }
         },
         {
@@ -127,13 +123,8 @@ module.exports = (options = {}) => {
       ]
     },
     plugins: [
-      new CleanWebpackPlugin(
-        {
-          cleanOnceBeforeBuildPatterns: [
-            'static/**/*.js',
-            'static/**/*.css',
-          ]}
-      ),
+      new CleanWebpackPlugin(),
+
       new webpack.ProvidePlugin({
         'fetch': 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
       }),
@@ -143,22 +134,13 @@ module.exports = (options = {}) => {
       }),
       new CopyWebpackPlugin([
         {
-          from: './fonts/',
-          to: 'fonts/',
+          from: 'fonts/',
+          to: 'fonts',
           flatten: true
         },
-        {
-          from: 'images/',
-          to: 'images/'
-        }
+        { from: 'images/', to: 'images'}
       ]),
-      new UglifyJsPlugin({
-        uglifyOptions: {
-          output: {
-            comments: false
-          }
-        }
-      })
+      new UglifyJsPlugin({ sourceMap: true })
     ]
   };
 };
