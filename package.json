@@ -9,6 +9,7 @@
     "watch:hugo": "hugo server --buildDrafts --buildExpired --buildFuture",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "concurrently \"npm run watch:hugo\" \"npm run assets:development\"",
+    "prebuild": "rimraf dist",
     "build": "webpack --mode production",
     "format": "prettier --write src/js/**/*.js *.js",
     "eslint-check": "eslint --print-config . | eslint-config-prettier-check"
@@ -39,6 +40,7 @@
     "node-sass": "^4.12.0",
     "postcss-loader": "^3.0.0",
     "prettier": "^1.18.2",
+    "rimraf": "^2.6.3",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "stylelint": "^10.1.0",

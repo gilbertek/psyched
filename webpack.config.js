@@ -98,6 +98,9 @@ module.exports = (options = {}) => {
       ]
     },
     devServer: {
+      port: process.env.PORT || 3000,
+      contentBase: resolve(process.cwd(), 'static'),
+      watchContentBase: true,
       hot: true,
       open: true, // Automatically open the page in browser
       host: '0.0.0.0',
@@ -109,11 +112,28 @@ module.exports = (options = {}) => {
         new TerserPlugin({
           sourceMap: true,
           parallel: true
-        })
+        }),
+
+        new UglifyJsPlugin({
+          cache: true,
+          parallel: true,
+          sourceMap: true
+        }),
+
+        new MiniCssExtractPlugin({
+          filename: 'css/[name].[hash:5].css',
+          chunkFilename: 'css/[id].[hash:5].css'
+        }),
       ]
     },
     plugins: [
-      new CleanWebpackPlugin(),
+      new CleanWebpackPlugin(
+        {
+          cleanOnceBeforeBuildPatterns: [
+            'static/**/*.js',
+            'static/**/*.css',
+          ]}
+      ),
       new webpack.ProvidePlugin({
         'fetch': 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
       }),

@@ -1,9 +1,8 @@
 <!doctype html>
 <html class="no-js" lang="{{ .Site.LanguageCode | default "en-us" }}" prefix="og: http://ogp.me/ns#">
 {{ partial "head.html" . }}
-
 <body>
-  {{ partial "nav.html" . }}
+  {{ partialCached "nav.html" . }}
 
   {{ block "main" . }}
   <!-- The part of the page that begins to differ between templates -->
@@ -12,5 +11,4 @@
   {{ partialCached "footer.html" . }}
   {{ partial "scripts" . }}
 </body>
-
 </html>

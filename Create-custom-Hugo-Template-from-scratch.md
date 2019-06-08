@@ -39,3 +39,25 @@ Create a layouts/index.html template that will be used by the home page
 Optionally create additional subdirectories in the layouts directory for any other section pages
 Once the layout templates are in place you can start adding markdown files in your content directory which will make up the majority of site maintenance work
 It would be ideal if the majority of user managed content is authored solely using markdown with a minimal amount of shortcodes. One way of accomplishing this is by splitting up markdown files in the content directory, including a type property in the front matter, and then referencing that type property in layout templates where most of the markup can live.
+
+Some common gothas
+```
+{{< highlight html >}} - unexpected “<” in command Built site for language
+```
+
+SHort answer: You can only the shortcodes inside the content directory.
+You should use partials if you want to use in your theme files.
+
+Solution #2:
+```
+{{ highlight `<div class="row">
+<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+  <div class="header">` "html" "" }}
+```
+
+Solution #2:
+Use partials
+```
+{{ $a := partial "footer" . }}
+{{ highlight $a "html" "" }}
+```
