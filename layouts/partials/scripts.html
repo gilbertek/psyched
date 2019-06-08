@@ -1,4 +1,4 @@
-<script src="{{ "assets/js/app.js" | relURL }}"></script>
+<script src="{{ "/js/app.js" | relURL }}"></script>
 {{ if eq ( getenv "HUGO_ENV" ) "production" }}
   {{ template "_internal/google_analytics_async.html" . }}
 {{ end }}

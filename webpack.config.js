@@ -1,4 +1,5 @@
 const { resolve } = require('path');
+const webpack = require('webpack');
 const glob = require('glob');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -25,7 +26,7 @@ module.exports = (options = {}) => {
       publicPath: '/static/'
     },
     resolve: {
-      extensions: ['.js', '.jsx', '.json', 'jpg', 'png'],
+      extensions: ['.wasm', '.js', '.jsx', '.json', 'jpg', 'png'],
     },
     performance: {
       hints: 'warning',
@@ -77,6 +78,14 @@ module.exports = (options = {}) => {
           ],
         },
         {
+          test: /\.(mp4|webm|ogg|mp3|wav|flac|aac|flv)(\?.*)?$/,
+          loader: 'url-loader',
+          options: {
+            limit: 10240,
+            name: '/media/[name].[hash:8].[ext]'
+          }
+        },
+        {
           test: /\.html$/,
           use: [
             {
@@ -107,6 +116,9 @@ module.exports = (options = {}) => {
     },
     plugins: [
       new CleanWebpackPlugin(),
+      new webpack.ProvidePlugin({
+        'fetch': 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
+      }),
       new MiniCssExtractPlugin({
         filename: 'css/[name].css',
         chunkFilename: 'css/[id].[hash:5].css'

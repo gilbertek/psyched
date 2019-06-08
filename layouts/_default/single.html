@@ -1,6 +1,21 @@
 {{ define "main" }}
 
-<h1 class="title">{{ .Title }}</h1>
-{{ .Content }}
+  <h1 class="title">
+    {{ .Title | markdownify }}
+  </h1>
+
+  {{ if .Params.Subtitle }}
+    <h2 class="font-weight-light font-italic mb-3">{{ .Params.Subtitle | markdownify }}</h2>
+  {{ end }}
+
+  <p class="text-muted mt-3">
+      {{ range .Params.tags }}
+        <a class="text-muted" href="{{ "/tags/" | relURL }}{{ . | urlize }}">#{{ . }}</a>
+      {{ end }}
+  </p>
+
+  <article class="article mt-5">
+      {{ .Content }}
+  </article>
 
 {{ end }}
