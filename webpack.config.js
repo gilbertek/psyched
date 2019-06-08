@@ -4,7 +4,6 @@ const glob = require('glob');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const PurgecssPlugin = require('purgecss-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
@@ -100,11 +99,10 @@ module.exports = (options = {}) => {
     },
     devServer: {
       hot: true,
-      open: true,
-      inline: true,
-      compress: true,
-      stats: 'minimal',
-      host: '0.0.0.0'
+      open: true, // Automatically open the page in browser
+      host: '0.0.0.0',
+      historyApiFallback: true, // Using HTML5 History API based routing
+      overlay: true, // Error overlay to capture compilation related warnings and errors
     },
     optimization: {
       minimizer: [
@@ -140,11 +138,6 @@ module.exports = (options = {}) => {
             comments: false
           }
         }
-      }),
-      new PurgecssPlugin({
-        paths: glob.sync(resolve(__dirname, './static/**/*'), {
-          nodir: true
-        })
       })
     ]
   };

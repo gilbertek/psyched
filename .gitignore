@@ -13,6 +13,9 @@ package-lock.json
 # Hugo
 public
 resources
-static/assets
+static/js
+static/css
+static/images
+static/fonts
 .netlify
 .asset-cache
