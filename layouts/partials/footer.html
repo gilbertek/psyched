@@ -1,7 +1,33 @@
 <footer role="contentinfo" class="footer footer-padding">
-  <div class="container">
-    <small>
-      &copy; {{ now.Format "2006"}} {{ .Site.Title }}. All Rights Reserved.
-    </small>
-  </div>
+  <section class="information social">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-4">
+
+          <div class="logo">
+            <div class="footer-descripyion"></div>
+            <div class="socials"></div>
+          </div>
+        </div>
+
+        <div class="column is-6 is-offset-2">
+          <div class="columns">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bottom copyright">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-12">
+          <small>
+            &copy; {{ now.Format "2006"}} {{ .Site.Title }}. All Rights Reserved.
+          </small>
+        </div>
+      </div>
+    </div>
+  </section>
 </footer>

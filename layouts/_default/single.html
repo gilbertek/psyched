@@ -1,24 +1,25 @@
 {{ define "main" }}
-<div class="section">
+
+<section class="section">
   <div class="container">
-  <h1 class="title">
-    {{ .Title | markdownify }}
-  </h1>
+    <h1 class="title">
+      {{ .Title | markdownify }}
+    </h1>
 
-  {{ if .Params.Subtitle }}
+    {{ if .Params.Subtitle }}
     <h2 class="font-weight-light font-italic mb-3">{{ .Params.Subtitle | markdownify }}</h2>
-  {{ end }}
+    {{ end }}
 
-  <p class="text-muted mt-3">
+    <p class="text-muted mt-3">
       {{ range .Params.tags }}
-        <a class="text-muted" href="{{ "/tags/" | relURL }}{{ . | urlize }}">#{{ . }}</a>
+      <a class="text-muted" href="{{ "/tags/" | relURL }}{{ . | urlize }}">#{{ . }}</a>
       {{ end }}
-  </p>
+    </p>
 
-  <article class="article mt-5">
+    <article class="article mt-5">
       {{ .Content }}
-  </article>
+    </article>
 
   </div>
-</div>
+</section>
 {{ end }}

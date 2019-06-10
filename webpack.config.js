@@ -21,13 +21,13 @@ module.exports = (options = {}) => {
     output: {
       path: resolve(__dirname, 'static', 'assets'),
       filename: 'js/[name].js',
-      publicPath: 'assets'
+      publicPath: 'assets/'
     },
     resolve: {
-      extensions: ['.wasm', '.js', '.jsx', '.json', 'jpg', 'png'],
+      extensions: ['.wasm', '.js', '.jsx', '.json', 'jpg', 'png']
     },
     performance: {
-      hints: 'warning',
+      hints: 'warning'
     },
     module: {
       rules: [
@@ -35,10 +35,13 @@ module.exports = (options = {}) => {
           test: /\.js$/,
           exclude: /node_modules/,
           use: {
-            loader: 'babel-loader',
-          },
+            loader: 'babel-loader'
+          }
         },
-        { test: /\.json$/, loader: 'json-loader' },
+        {
+          test: /\.json$/,
+          loader: 'json-loader'
+        },
         {
           test: /\.(sa|sc|c)ss$/,
           exclude: /node_modules/,
@@ -57,9 +60,10 @@ module.exports = (options = {}) => {
               loader: 'file-loader',
               options: {
                 limit: 8192,
-              },
-            },
-          ],
+                outputPath: 'images/'
+              }
+            }
+          ]
         },
         {
           test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
@@ -68,16 +72,17 @@ module.exports = (options = {}) => {
               loader: 'url-loader',
               options: {
                 limit: 8192,
-              },
-            },
-          ],
+                outputPath: 'fonts/'
+              }
+            }
+          ]
         },
         {
           test: /\.(mp4|webm|ogg|mp3|wav|flac|aac|flv)(\?.*)?$/,
           loader: 'url-loader',
           options: {
             limit: 10240,
-            name: '[name].[hash:8].[ext]'
+            name: 'media/[name].[hash:8].[ext]'
           }
         },
         {
@@ -101,7 +106,7 @@ module.exports = (options = {}) => {
       open: true, // Automatically open the page in browser
       host: '0.0.0.0',
       historyApiFallback: true, // Using HTML5 History API based routing
-      overlay: true, // Error overlay to capture compilation related warnings and errors
+      overlay: true // Error overlay to capture compilation related warnings and errors
     },
     optimization: {
       minimizer: [
@@ -119,14 +124,16 @@ module.exports = (options = {}) => {
         new MiniCssExtractPlugin({
           filename: 'css/[name].[hash:5].css',
           chunkFilename: 'css/[id].[hash:5].css'
-        }),
+        })
       ]
     },
     plugins: [
-      new CleanWebpackPlugin(),
-
+      /*
+      new CleanWebpackPlugin({}),
+      */
       new webpack.ProvidePlugin({
-        'fetch': 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
+        fetch:
+          'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
       }),
       new MiniCssExtractPlugin({
         filename: 'css/[name].css',
@@ -134,13 +141,13 @@ module.exports = (options = {}) => {
       }),
       new CopyWebpackPlugin([
         {
-          from: 'fonts/',
-          to: 'fonts',
-          flatten: true
-        },
-        { from: 'images/', to: 'images'}
+          from: 'images/',
+          to: 'images/'
+        }
       ]),
-      new UglifyJsPlugin({ sourceMap: true })
+      new UglifyJsPlugin({
+        sourceMap: true
+      })
     ]
   };
 };
