@@ -14,7 +14,6 @@ module.exports = (options = {}) => {
     context: resolve(__dirname, 'src'),
     devtool: sourceMap,
     target: 'node',
-    watch: true,
     entry: {
       app: ['./js/app']
     },
