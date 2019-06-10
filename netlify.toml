@@ -1,6 +1,5 @@
 [build]
 command = "npm run build"
-publish = "assets"
 
 [context.production.environment]
 HUGO_VERSION = "0.55.6"
