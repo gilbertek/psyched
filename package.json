@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf ./public/* && rimraf ./static/assets/*",
-    "assets:watch": "cross-env NODE_ENV=development webpack --mode development --progress --hide-modules",
+    "assets:watch": "cross-env NODE_ENV=development webpack --mode development --progress --hide-modules --watch",
     "assets:build": "cross-env NODE_ENV=development webpack -p",
     "hugo:watch": "hugo server --buildDrafts --buildExpired --buildFuture",
     "start": "concurrently \"npm run hugo:watch\" \"npm run assets:watch\"",
