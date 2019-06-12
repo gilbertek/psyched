@@ -6,7 +6,6 @@ $pink-invert: #fff;
 $primary: $pink;
 $primary-invert: $pink-invert;
 
-
 // Set your brand colors
 /* $purple: #8A4D76; */
 /* $pink: #FA7C91; */
@@ -15,11 +14,14 @@ $primary-invert: $pink-invert;
 /* $beige-lighter: #EFF0EB; */
 
 // Update Bulma's global variables
-/* $family-sans-serif: 'Avenir Next', sans-serif; */
-$family-sans-serif: 'Roboto',
+
+$family-sans-serif: 'Avenir Next', sans-serif;
+
+/* $family-sans-serif: 'Roboto',
 Helvetica,
 Arial,
 sans-serif;
+*/
 $grey-dark: #5b5b5b;
 $grey-light: #e9e9e9;
 /* $primary: $purple; */
