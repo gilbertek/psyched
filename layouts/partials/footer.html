@@ -5,14 +5,39 @@
         <div class="column is-4">
 
           <div class="logo">
-            <div class="footer-descripyion"></div>
+            <img src="/assets/images/logo_transparent.png" alt="{{ .Site.Title }}">
+
+            <div class="footer-description">
+
+            </div>
             <div class="socials"></div>
           </div>
         </div>
 
         <div class="column is-6 is-offset-2">
           <div class="columns">
+            <div class="column">
+              <ul class="footer-column">
+                <li class="column-header">
+                    Links
+                </li>
+                <li class="column-item"><a href="{{ .Site.BaseURL }}">Home</a></li>
+                <li class="column-item"><a href="{{ .Site.BaseURL }}about">About</a></li>
+                <li class="column-item"><a href="{{ .Site.BaseURL }}services">Services</a></li>
+              </ul>
+            </div>
 
+            <div class="column">
+              <ul class="footer-column">
+                  <li class="column-header">
+                      Terms
+                  </li>
+                  {{/* <li class="column-item"><a href="https://cssninja.io/help/terms/licenses/personal">Personal</a></li>
+                  <li class="column-item"><a href="{{ .Site.BaseURL }}licenses">Developer</a></li>
+                  */}}
+                  <li class="column-item"><a href="{{ .Site.BaseURL }}terms">Terms of Service</a></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
