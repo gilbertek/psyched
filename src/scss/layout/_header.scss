@@ -1,5 +1,5 @@
 .navbar {
-  height: 4.25rem !important;
+  height: 4.9rem !important;
 
   .navbar-link {
     text-transform: uppercase;
@@ -8,4 +8,8 @@
     font-weight: 400;
     line-height: 16px;
   }
+}
+
+.navbar-item img {
+  max-height: 4.75rem !important;
 }
