@@ -227,12 +227,18 @@
 
   a[href^='tel:'] {
     color: #fff;
+    font-size: large;
     text-decoration: none;
   }
 
   a[href^='tel:']:before {
-    content: '\260e';
+    // content: '\260e';
     margin-right: 0.5em;
+  }
+
+  a[href^='tel:']:hover {
+    color: #fff !important;
+    background-color: transparent !important;
   }
 }
 
