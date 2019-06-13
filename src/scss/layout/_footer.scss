@@ -10,23 +10,53 @@
   }
 
   .footer-column {
-    padding-top: 20px;
-
     .column-header {
-        text-transform: uppercase;
-        color: #A9ABAC;
-        font-size: 1rem;
-        font-weight: 500;
-        margin-bottom: 20px;
+      text-transform: uppercase;
+      color: #a9abac;
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 20px;
     }
+
     .column-item {
-        padding-bottom: 10px;
-        a {
-            color: #A9ABAC;
-            &:hover {
-                color: $primary;
-            }
+      padding-bottom: 10px;
+
+      a {
+        color: #a9abac;
+
+        &:hover {
+          color: $primary;
         }
+      }
     }
+  }
+
+  .column-header {
+    text-transform: uppercase;
+    color: #a9abac;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+
+  .footer-links-contact li svg {
+    min-width: 16px;
+    height: auto;
+    margin-right: 8px;
+    color: #a9abac;
+  }
+
+  .footer-links-contact li span {
+    color: #a9abac;
+  }
+
+  a[href^='tel:'],
+  a[href^='mailto:'] {
+    color: #a9abac;
+    text-decoration: none;
+  }
+
+  a[href^='tel:']:before {
+    margin-right: 0.5em;
   }
 }
