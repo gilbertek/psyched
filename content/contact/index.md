@@ -6,30 +6,36 @@ weight: 30
 description: 'Meta Description about the Contact Page'
 ---
 
+Call us on [+14024152052](tel:+14024152052) or email [gerald@prosightful.org](mailto:gerald@prosightful.org)
+
+
+Or just fill in this form and we’ll get back to you.
+
+
 <section class="section">
-<div class="container contact-us">
+  <div class="container contact-us">
     <form action="">
-        <div class="columns">
-            <div class="column is-half">
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name" required="true">
-            </div>
-            <div class="column is-half">
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" required="true">
-            </div>
-        </div>
-        <div class="columns">
-            <div class="column is-full">
-                <label for="message">Message</label>
-                <textarea cols="30" rows="4" name="message" id="message" required="true"></textarea>
-            </div>
-        </div>
-        <div class="columns">
-            <div class="column is-full">
-                <input type="submit" value="Get In Touch" class="button is-primary contact-us__btn">
-            </div>
-        </div>
+      <div class="columns is-mobile">
+          <div class="column is-half">
+              <label for="name">Name</label>
+              <input type="text" name="name" id="name" required="true">
+          </div>
+          <div class="column is-half">
+              <label for="email">Email</label>
+              <input type="email" name="email" id="email" required="true">
+          </div>
+      </div>
+      <div class="columns">
+          <div class="column is-full">
+              <label for="message">Message</label>
+              <textarea cols="30" rows="4" name="message" id="message" required="true"></textarea>
+          </div>
+      </div>
+      <div class="columns">
+          <div class="column is-full">
+              <input type="submit" value="Get In Touch" class="button is-primary contact-us__btn">
+          </div>
+      </div>
     </form>
-</div>
+  </div>
 </section>
