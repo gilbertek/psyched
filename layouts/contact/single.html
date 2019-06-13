@@ -1,0 +1,39 @@
+{{ define "main" }}
+  <div class="content">
+    {{ .Content }}
+
+    <p>3 Meadow Business Centre<br>
+      Old Uckfield Road, Ringmer<br>
+      East Sussex BN8 5RW</p>
+  </div>
+
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDZ1qYG-mHaQ5E4nAszS69EWwHn4mh0SQ8"></script>
+	<script>
+		(function() {
+			var center = new google.maps.LatLng( 50.900217, 0.039475 ),
+				mapOptions = {
+					zoom: 15,
+					center: center,
+					minZoom: 5,
+					maxZoom: 19,
+					mapTypeControl: false,
+					scrollwheel: false,
+					zoomControl: false
+				},
+				map = new google.maps.Map( document.getElementById( 'map' ), mapOptions );
+
+				new google.maps.Marker(
+					{
+						position: center,
+						map: map,
+						visible: true,
+						icon: {
+							url: 'images/pin.png'
+						}
+					}
+				);
+
+				map.setOptions({styles: [{featureType: 'all',stylers: [{ saturation: -100 }]},{featureType: 'poi.business',elementType: 'labels',stylers: [{ visibility: 'off' }]},{featureType: 'water',stylers: [{ lightness: -20 }]}]});
+		})();
+	</script>
+{{ end }}
