@@ -1,51 +1,57 @@
 {{ define "main" }}
 
-  <section class="home-hero">
-    <figure class="image">
-      <img src="/assets/images/biracial-counseling.jpg" alt="couple counseling">
-    </figure>
-    <div class="background-cover"></div>
-  </section>
+<section class="home-hero">
+	<figure class="image">
+		<img src="/assets/images/family-2.jpg" alt="couple counseling" style="height: 380px">
+	</figure>
+	<div class="background-cover"></div>
+</section>
 
-  <section class="section ts">
-    <div class="container">
-      {{ .Content }}
-    </div>
+<section class="section ts">
+	<div class="container">
+		<h1 class="title">
+			{{ .Title | markdownify }}
+		</h1>
 
-    <div id="contact">
-      {{ partial "contact-form" . }}
-    </div>
+		{{ .Content }}
+	</div>
 
-    <div class="map"><div id="map"></div></div>
-  </section>
+	<div id="contact">
+		{{ partial "contact-form" . }}
+	</div>
 
-  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key="></script>
-	<script>
-		(function() {
-			var center = new google.maps.LatLng( 50.900217, 0.039475 ),
-				mapOptions = {
-					zoom: 15,
-					center: center,
-					minZoom: 5,
-					maxZoom: 19,
-					mapTypeControl: false,
-					scrollwheel: false,
-					zoomControl: false
-				},
-				map = new google.maps.Map( document.getElementById( 'map' ), mapOptions );
+	<div class="map">
+		<div id="map"></div>
+	</div>
+</section>
 
-				new google.maps.Marker(
-					{
-						position: center,
-						map: map,
-						visible: true,
-						icon: {
-							url: '../assets/images/pin.png'
-						}
-					}
-				);
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key="></script>
+<script>
+	(function () {
+		var center = new google.maps.LatLng(50.900217, 0.039475),
+			mapOptions = {
+				zoom: 15,
+				center: center,
+				minZoom: 5,
+				maxZoom: 19,
+				mapTypeControl: false,
+				scrollwheel: false,
+				zoomControl: false
+			},
+			map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-				map.setOptions({styles: [{featureType: 'all',stylers: [{ saturation: -100 }]},{featureType: 'poi.business',elementType: 'labels',stylers: [{ visibility: 'off' }]},{featureType: 'water',stylers: [{ lightness: -20 }]}]});
-		})();
-	</script>
+		new google.maps.Marker(
+			{
+				position: center,
+				map: map,
+				visible: true,
+				icon: {
+					url: '../assets/images/pin.png'
+				}
+			}
+		);
+
+		map.setOptions({ styles: [{ featureType: 'all', stylers: [{ saturation: -100 }] }, { featureType: 'poi.business', elementType: 'labels', stylers: [{ visibility: 'off' }] }, { featureType: 'water', stylers: [{ lightness: -20 }] }] });
+	})();
+</script>
 {{ end }}
