@@ -52,6 +52,7 @@ module.exports = (options = {}) => {
             'sass-loader'
           ]
         },
+        /*
         {
           test: /\.(png|jp(e*)g|gif|svg)$/i,
           use: [
@@ -75,7 +76,7 @@ module.exports = (options = {}) => {
               }
             }
           ]
-        },
+        }, */
         {
           test: /\.(mp4|webm|ogg|mp3|wav|flac|aac|flv)(\?.*)?$/,
           loader: 'url-loader',
@@ -94,7 +95,16 @@ module.exports = (options = {}) => {
               }
             }
           ]
-        }
+        },
+
+        {
+          test: /\.((png)|(eot)|(woff)|(woff2)|(ttf)|(svg)|(gif))(\?v=\d+\.\d+\.\d+)?$/,
+          use: [{loader: 'file-loader?name=/[hash].[ext]',
+            options: {
+              limit: 8192,
+              outputPath: 'fonts/'
+            }}],
+        },
       ]
     },
     devServer: {
