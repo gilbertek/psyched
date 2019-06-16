@@ -1,23 +1,28 @@
 {{ define "main" }}
 
 {{ if and (isset .Params "heroimage") (not (eq .Params.heroimage "")) -}}
-<!-- <article class="hero-image">
-  <header style="background-image: url('{{ .Params.heroimage | absURL }}')">
-    <h1 class="title">{{ .Title }}</h1>
-  </header>
-</article> -->
 
 {{ $fullpath := printf "%s%s" "/assets/images/" .Params.heroimage }}
-<section class="hero">
-  <figure class="image">
-    <img src="{{ $fullpath | relURL }}" alt="gerald igboanusi" class="profile-img" data-target="modal-image2">
-  </figure>
+<section class="hero is-medium">
+  <header style="background-image: url('{{ $fullpath | relURL }}'); background-size: cover;">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <h1 class="title">{{ .Title | markdownify }}</h1>
+        {{ if .Params.Subtitle }}
+        <h2 class="subtitle">{{ .Params.Subtitle | markdownify }}</h2>
+        {{ end }}
+      </div>
+    </div>
+  </header>
+
+  <!-- <figure class="image">
+    <img src="{{ $fullpath | relURL }}" alt="{{ .Params.heroImageAlt }}" class="profile-img"
+      data-target="modal-image2" />
+
+    <div class="hero-body" style="border: 1px solid red"></div>
+  </figure> -->
 </section>
 {{- else -}}
-
-{{- end -}}
-
-
 <section class="section">
   <div class="container">
     <h1 class="title">
@@ -33,11 +38,13 @@
       <a class="text-muted" href="{{ "/tags/" | relURL }}{{ . | urlize }}">#{{ . }}</a>
       {{ end }}
     </p>
+  </div>
+</section>
+{{- end -}}
 
-    <article class="article mt-5">
-      {{ .Content }}
-    </article>
-
+<section class="section">
+  <div class="container">
+    {{ .Content }}
   </div>
 </section>
 {{ end }}

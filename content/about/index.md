@@ -2,21 +2,25 @@
 title: 'About Us'
 date: 2019-05-26T12:42:48-04:00
 subTitle: Care for the whole human person
-images:
-  - biracial-counseling.jpg
+heroImage: family.jpg
+heroImageAlt: happy family image
 ---
 
-<!-- <section class="hero">
-        <figure class="image">
-            <img src="https://images.pexels.com/photos/167636/pexels-photo-167636.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
-        </figure>
-    </section> -->
+<div class="container">
+    <div class="columns is-mobile features">
+      <div class="column is-8">
+        <p>
+        Am I the right therapist for you? I would say that finding the right therapist is based on the <strong> "goodness of fit model"</strong> - whether my approach to therapy and personality are the right fit for you. So let me share a little more about myself, so you can decide if we would work well together.</p>
+        <br/>
+        <p>Most clients describe me as authentic, friendly, nonjudgmental and down-to-earth. I enjoy what I do and find the conversations with my clients stimulating and exciting. You will always get an honest feedback from me. One of my personal values is to practice what I preach. I will not ask you to engage in treatment modalities I have not practiced myself. Health and well-being is the backbone of my personal life practice and is an ongoing pursuit of my growth and learning. The exploration of the mind-body connection and various healing modalities within both my personal and professional life have provided me with an in-depth understanding of the interplay between physical, emotional, mental and spiritual health and happiness.</p>
 
-<img src="biracial-counseling.jpg" alt="Screenshot of the Onion homepage">
+</div>
+<div class="column is-4">
+  <img src="/assets/images/gerald-igboanusi.jpg" alt="gerald igboanusi founder" class="profile-img" data-target="modal-image2" />
+</div>
+</div>
 
-Am I the right therapist for you? I would say that finding the right therapist is based on the “goodness of fit model”- whether my approach to therapy and personality are the right fit for you. So let me share a little more about myself, so you can decide if we would work well together.
-
-Most clients describe me as authentic, friendly, nonjudgmental and down-to-earth. I enjoy what I do and find the conversations with my clients stimulating and exciting. You will always get an honest feedback from me. One of my personal values is to practice what I preach. I will not ask you to engage in treatment modalities I have not practiced myself. Health and well-being is the backbone of my personal life practice and is an ongoing pursuit of my growth and learning. The exploration of the mind-body connection and various healing modalities within both my personal and professional life have provided me with an in-depth understanding of the interplay between physical, emotional, mental and spiritual health and happiness.
+</div>
 
 Gerald Igboanusi, MS, LMHP, LPC, NCC
 Provisionally Licensed Mental Health Practitioner
