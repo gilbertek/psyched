@@ -1,10 +1,8 @@
 ---
 title: 'Services'
 date: 2019-06-14T07:06:48-04:00
-draft: true
 subTitle: Individual, Couple & Family Psychotherapy
 heroimage: biracial-counseling.jpg
-herocaption: Individual, Couple & Family Psychotherapy
 ---
 
 Picture

@@ -31,6 +31,8 @@ heroImageAlt: happy family image
   </div>
 </div>
 
+<hr class="hr">
+
 <div class="container is-fluid ">
   <div class="columns">
     <div class="column is-4">
