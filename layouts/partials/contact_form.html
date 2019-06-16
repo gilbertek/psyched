@@ -1,28 +1,24 @@
+<form action="" class="contact-form">
+    <div class="field">
+        <label class="label">Name</label>
+        <div class="control is-medium">
+            <input class="input is-radiusless is-medium" type="text" placeholder="e.g Alex Smith" id="name"
+                required="true">
+        </div>
+    </div>
 
-<section class="section">
-  <div class="container contact-us">
-    <form action="">
-      <div class="columns is-mobile">
-          <div class="column is-half">
-              <label for="name">Name</label>
-              <input type="text" name="name" id="name" required="true">
-          </div>
-          <div class="column is-half">
-              <label for="email">Email</label>
-              <input type="email" name="email" id="email" required="true">
-          </div>
-      </div>
-      <div class="columns">
-          <div class="column is-full">
-              <label for="message">Message</label>
-              <textarea cols="30" rows="4" name="message" id="message" required="true"></textarea>
-          </div>
-      </div>
-      <div class="columns">
-          <div class="column is-full">
-              <input type="submit" value="Get In Touch" class="button is-primary contact-us__btn">
-          </div>
-      </div>
-    </form>
-  </div>
-</section>
+    <div class="field">
+        <label class="label">Email</label>
+        <div class="control is-medium">
+            <input class="input is-radiusless is-medium" type="email" placeholder="e.g. alexsmith@gmail.com" id="email"
+                required="true">
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Message</label>
+        <div class="control">
+            <textarea class="textarea is-radiusless" placeholder="Textarea" id="message" required="true"></textarea>
+        </div>
+    </div>
+</form>

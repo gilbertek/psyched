@@ -8,44 +8,80 @@
 </section>
 
 <section class="section contact">
-	<div class="container">
+	<div class="container is-fluid has-text-centered">
 		<h1 class="title">
 			{{ .Title | markdownify }}
 		</h1>
+	</div>
+</section>
+
+{{/*
+<section class="section contact">
+	<div class="container is-fluid">
 		{{ .Content }}
-	</div>
+</div>
+</section>
+*/}}
 
-	<div id="contact">
-		{{ partial "contact_form" . }}
-	</div>
-
-	{{/*
-	<div class="container">
-		<div class="columns is-mobile">
+<section class="section contact">
+	<div class="container is-fluid">
+		<div class="columns">
 			<div class="column is-6">
+				<h2 class="title">Send a message</h2>
+
+				<div class="container">
+					{{ partial "contact_form" . }}
+				</div>
+			</div>
+
+			<div class="column is-6">
+				<h2 class="title">Be in touch</h2>
+
+				<p>
+					Please feel free to send a message or call with any questions.
+				</p>
+
 				<dl class="contact__list">
 					<div class="contact__item">
 						<dt>Address</dt>
 						<dd>
-							2700 Marigold Lane, Avenue 234
-							<br>68164
-							<br>Omaha, NE
+							<small>2700 Marigold Lane, Avenue 234</small>
+							<br>
+							<small>68164</small>
+							<br>
+							<small>Omaha, NE</small>
 						</dd>
 					</div>
 
 					<div class="contact__item">
 						<dt>Email</dt>
-						<dd><a href="mailto:gerald@prosightful.org">gerald@prosightful.org</a></dd>
+						<dd>
+							<small>
+								<a href="mailto:gerald@prosightful.org">gerald@prosightful.org</a>
+							</small>
+						</dd>
 					</div>
 
 					<div class="contact__item">
-						<dt>Phone</dt>
+						<dt>Phone / Fax</dt>
 						<dd>
 							<a href="tel:+14024152052">+1 402-415-2052</a>
-							<br><small class="color-contrast-medium">Mon - Fri, 9AM - 5PM</small>
+							<br>
+							<small class="color-contrast-medium">Mon - Fri, 8AM - 8PM</small>
+							<br>
+							<small class="color-contrast-medium">Saturday, 8AM - 8PM</small>
 						</dd>
 					</div>
 				</dl>
+			</div>
+		</div>
+	</div>
+</section>
+
+{{/*
+	<div class="container">
+		<div class="columns is-mobile">
+			<div class="column is-6">
 			</div>
 			<div class="column is-6">
 				<div aria-hidden="true" class="contact__map js-contact__map" data-coordinates="51.5658015,-0.40339">
