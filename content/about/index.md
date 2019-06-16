@@ -6,6 +6,12 @@ images:
   - biracial-counseling.jpg
 ---
 
+<!-- <section class="hero">
+        <figure class="image">
+            <img src="https://images.pexels.com/photos/167636/pexels-photo-167636.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+        </figure>
+    </section> -->
+
 <img src="biracial-counseling.jpg" alt="Screenshot of the Onion homepage">
 
 Am I the right therapist for you? I would say that finding the right therapist is based on the “goodness of fit model”- whether my approach to therapy and personality are the right fit for you. So let me share a little more about myself, so you can decide if we would work well together.

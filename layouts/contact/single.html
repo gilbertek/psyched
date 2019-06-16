@@ -7,24 +7,62 @@
 	<div class="background-cover"></div>
 </section>
 
-<section class="section ts">
+<section class="section contact">
 	<div class="container">
 		<h1 class="title">
 			{{ .Title | markdownify }}
 		</h1>
-
 		{{ .Content }}
 	</div>
 
 	<div id="contact">
-		{{ partial "contact-form" . }}
+		{{ partial "contact_form" . }}
 	</div>
 
-	<div class="map">
-		<div id="map"></div>
+	{{/*
+	<div class="container">
+		<div class="columns is-mobile">
+			<div class="column is-6">
+				<dl class="contact__list">
+					<div class="contact__item">
+						<dt>Address</dt>
+						<dd>
+							2700 Marigold Lane, Avenue 234
+							<br>68164
+							<br>Omaha, NE
+						</dd>
+					</div>
+
+					<div class="contact__item">
+						<dt>Email</dt>
+						<dd><a href="mailto:gerald@prosightful.org">gerald@prosightful.org</a></dd>
+					</div>
+
+					<div class="contact__item">
+						<dt>Phone</dt>
+						<dd>
+							<a href="tel:+14024152052">+1 402-415-2052</a>
+							<br><small class="color-contrast-medium">Mon - Fri, 9AM - 5PM</small>
+						</dd>
+					</div>
+				</dl>
+			</div>
+			<div class="column is-6">
+				<div aria-hidden="true" class="contact__map js-contact__map" data-coordinates="51.5658015,-0.40339">
+					<!-- Google Map -->
+				</div>
+			</div>
+		</div>
 	</div>
+	*/}}
 </section>
 
+<!-- https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap
+&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318
+&markers=color:red%7Clabel:C%7C40.718217,-73.998284 -->
+<!-- &key=AIzaSyAtDwFwo5sagJvr7Z0gCxhUq-KsFgk9kBc -->
+<!-- https://maps.googleapis.com/maps/api/staticmap?40.714728,-73.998672 -->
+<!-- https://maps.googleapis.com/maps/api/staticmap?size=400x400&zoom=12&center=40.714728,-73.998672&key=%27%27 -->
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key="></script>
 <script>
 	(function () {

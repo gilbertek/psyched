@@ -1,5 +1,23 @@
 {{ define "main" }}
 
+{{ if and (isset .Params "heroimage") (not (eq .Params.heroimage "")) -}}
+<!-- <article class="hero-image">
+  <header style="background-image: url('{{ .Params.heroimage | absURL }}')">
+    <h1 class="title">{{ .Title }}</h1>
+  </header>
+</article> -->
+
+{{ $fullpath := printf "%s%s" "/assets/images/" .Params.heroimage }}
+<section class="hero">
+  <figure class="image">
+    <img src="{{ $fullpath | relURL }}" alt="gerald igboanusi" class="profile-img" data-target="modal-image2">
+  </figure>
+</section>
+{{- else -}}
+
+{{- end -}}
+
+
 <section class="section">
   <div class="container">
     <h1 class="title">

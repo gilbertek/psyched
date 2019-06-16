@@ -14,7 +14,7 @@
     .column-header {
       text-transform: uppercase;
       color: #a9abac;
-      font-size: 1rem;
+      font-size: 0.9rem;
       font-weight: 500;
       margin-bottom: 20px;
     }
@@ -23,6 +23,7 @@
       padding-bottom: 10px;
 
       a {
+        font-size: 0.9em;
         color: #a9abac;
 
         &:hover {
@@ -38,6 +39,10 @@
     font-size: 1rem;
     font-weight: 500;
     margin-bottom: 20px;
+  }
+
+  .footer-links-contact {
+    font-size: 0.9rem;
   }
 
   .footer-links-contact li svg {

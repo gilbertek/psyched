@@ -1,4 +1,4 @@
-baseURL = "gerald@prosightful.org"
+baseURL = "https://prosightful.org"
 languageCode = "en-us"
 title = "ProSightful Counseling"
 
@@ -25,9 +25,26 @@ canonifyURLs = true
     identifier = "about"
     url = "/about/"
     weight = 2
+  [[menu.main]]
+    name = "Services"
+    identifier = "services"
+    url = "/services/"
+    weight = 3
+  [[menu.main]]
+    name = "Our Specialty"
+    identifier = "specialty"
+    url = "/specialty/"
+    weight = 4
+  [[menu.main]]
+    name = "Contact Us"
+    identifier = "contact"
+    url = "/contact/"
+    weight = 5
+
 
 [params]
-  description="My home on the internet"
+  description= "A Counseling firm based out of Omaha. Our therapists provide individual counseling, couple therapy, family counseling and group counseling. Serving all Omaha and neighboring cities."
+  keywords = "Counseling, Individual Counseling, Couple Therapy, Family Counseling, Group Counseling, Gerald Igboanusi, MS, LMHP, LPC, NCC, Provisionally Licensed Mental Health Practitioner, Licensed Professional Counselor, Omaha, Nebraska"
 
 [outputFormats]
   [outputFormats.RSS]

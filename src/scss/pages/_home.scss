@@ -162,6 +162,7 @@
   }
 }
 
+/*
 .reviews {
   background-color: #f5f5f5;
 
@@ -210,6 +211,28 @@
       color: darken(hsl(50, 5, 97), 7%);
       z-index: -1;
     }
+  }
+}
+*/
+
+.welcome {
+  h2 {
+    text-transform: uppercase;
+  }
+
+  p {
+    margin-bottom: 1em;
+    font-size: 1.05em;
+  }
+}
+
+.services {
+  background: #95ccc9;
+  color: #ffffff;
+
+  h2 {
+    color: #fff;
+    text-transform: uppercase;
   }
 }
 
@@ -310,8 +333,86 @@
   }
 }
 
-.welcome {
-  p {
-    margin-bottom: 1em;
+/* --------------------------------
+
+Title: Testimonials
+Descr: A gallery of testimonial cards
+
+-------------------------------- */
+
+.testimonials {
+  background-color: #f5f5f5;
+
+  h2 {
+    text-transform: uppercase;
+  }
+
+  svg {
+    max-width: 100%;
+  }
+
+  mark {
+    background-color: hsla(355, 90%, 61%, 0.2);
+    color: inherit;
+  }
+
+  &-card {
+    height: 100%;
+    padding: 1.25em;
+    margin: 3rem;
+
+    footer {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    &__icon {
+      display: block;
+      width: 46px !important;
+      height: 46px !important;
+      color: #d3d3d4;
+      margin-bottom: 0.375em;
+    }
+
+    &.icon {
+      display: inline-block;
+      color: inherit;
+      fill: currentColor;
+      height: 1em;
+      width: 1em;
+      line-height: 1;
+      -ms-flex-negative: 0;
+      flex-shrink: 0;
+    }
+
+    &__quote {
+      font-size: 1.1em;
+      line-height: 1.7;
+      margin-bottom: 1.25em;
+    }
+
+    &__img {
+      flex-shrink: 0;
+      margin-right: 0.75em;
+
+      img {
+        display: block;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: 2px solid #fff;
+      }
+    }
+
+    &__cite {
+      font-size: 0.83333em;
+
+      span {
+        display: block;
+        color: #79797c;
+        margin-top: 0.125em;
+      }
+    }
   }
 }

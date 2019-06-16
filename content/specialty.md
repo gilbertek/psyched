@@ -1,10 +1,8 @@
 ---
-title: 'Our Speciality'
+title: 'Our Specialty'
 date: 2019-06-14T06:58:36-04:00
-draft: true
+heroimage: family-3.jpg
 ---
-
-## Areas of Specialization
 
 Individual Therapy & Counseling
 Family
