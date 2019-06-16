@@ -19,3 +19,63 @@ a.logo {
   height: 320px;
   width: 480px;
 }
+
+.faq--counter .faq__item {
+  counter-increment: faq;
+}
+
+.faq__title::before {
+  content: counter(faq);
+  position: absolute;
+  font-size: 0.6em;
+  height: 2em;
+  left: 0;
+  width: 2em;
+  line-height: 2em;
+  text-align: center;
+  background-color: #f2f2f2;
+  color: #79797c;
+  border-radius: 50%;
+}
+
+.faq--counter .faq__title {
+  position: relative;
+  padding-left: 1.575em;
+}
+
+.text-component h1,
+.text-component h2,
+.text-component h3,
+.text-component h4 {
+  line-height: 1.2;
+  margin-bottom: 0.25em;
+  font-weight: 600;
+}
+
+.text-component ol li,
+.text-component ul li {
+  margin-left: 1.575em;
+}
+
+.text-component ol li,
+.text-component ul li,
+.text-component p {
+  font-size: 0.83333em;
+  color: #79797c;
+}
+
+.text-component > *:first-child {
+  margin-top: 0;
+}
+
+.text-component p,
+.text-component blockquote,
+.text-component ul li,
+.text-component ol li {
+  line-height: 1.8;
+}
+
+.text-component {
+  --line-height-multiplier: 1;
+  --text-vspace-multiplier: 1;
+}
