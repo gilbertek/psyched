@@ -5,6 +5,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
+const imageminMozjpeg = require('imagemin-mozjpeg');
 
 module.exports = (options = {}) => {
   const isProduction = options.mode === 'production';
@@ -108,6 +110,7 @@ module.exports = (options = {}) => {
       overlay: true // Error overlay to capture compilation related warnings and errors
     },
     optimization: {
+      // runtimeChunk: 'single',
       minimizer: [
         new TerserPlugin({
           sourceMap: true,
@@ -138,15 +141,25 @@ module.exports = (options = {}) => {
       }),
       new CopyWebpackPlugin([
         {
-          from: 'fonts/',
-          to: 'fonts/',
+          from: 'fonts/**/**',
+          to: resolve(__dirname, 'static', 'assets', 'fonts'),
           flatten: true
         },
         {
-          from: 'images/',
-          to: 'images/'
+          from: 'images/**/**',
+          to: resolve(__dirname, 'static', 'assets')
         }
       ]),
+      new ImageminPlugin({
+        pngquant: {
+          quality: [0.5, 0.5]
+        },
+        plugins: [
+          imageminMozjpeg({
+            quality: 50
+          })
+        ]
+      }),
       new UglifyJsPlugin({
         sourceMap: true
       })
