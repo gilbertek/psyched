@@ -1,6 +1,7 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -63,19 +64,6 @@ module.exports = (options = {}) => {
             }
           ]
         },
-
-        {
-          test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-          use: [
-            {
-              loader: 'url-loader',
-              options: {
-                limit: 8192,
-                outputPath: 'fonts/'
-              }
-            }
-          ]
-        },
         {
           test: /\.(mp4|webm|ogg|mp3|wav|flac|aac|flv)(\?.*)?$/,
           loader: 'url-loader',
@@ -91,6 +79,18 @@ module.exports = (options = {}) => {
               loader: 'html-loader',
               options: {
                 minimize: true
+              }
+            }
+          ]
+        },
+        {
+          test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+          use: [
+            {
+              loader: 'file-loader?name=/[hash].[ext]',
+              options: {
+                limit: 8192,
+                outputPath: 'fonts/'
               }
             }
           ]
@@ -127,6 +127,7 @@ module.exports = (options = {}) => {
       ]
     },
     plugins: [
+      new CleanWebpackPlugin(),
       new webpack.ProvidePlugin({
         fetch:
           'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
