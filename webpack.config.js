@@ -165,18 +165,18 @@ module.exports = (options = {}) => {
           to: resolve(__dirname, 'static', 'assets')
         }
       ]),
-      // new ImageminPlugin({
-      //   pngquant: ({
-      //     quality: 75
-      //   }),
-      //   plugins: [
-      //     imageminMozjpeg({
-      //       progressive: true,
-      //       arithmetic: false,
-      //       quality: 85,
-      //     })
-      //   ],
-      // }),
+      new ImageminPlugin({
+        pngquant: {
+          quality: 75
+        },
+        plugins: [
+          imageminMozjpeg({
+            progressive: true,
+            arithmetic: false,
+            quality: 85
+          })
+        ]
+      }),
       new UglifyJsPlugin({
         sourceMap: true
       })
