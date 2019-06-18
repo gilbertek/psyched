@@ -7,6 +7,9 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const imageminMozjpeg = require('imagemin-mozjpeg');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebappWebpackPlugin = require('webapp-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 
 module.exports = (options = {}) => {
   const isProduction = options.mode === 'production';
@@ -135,6 +138,18 @@ module.exports = (options = {}) => {
         fetch:
           'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
       }),
+      new ManifestPlugin(),
+      new HtmlWebpackPlugin({
+        template: resolve(__dirname, 'layouts', 'partials', 'favicons.html'),
+        filename: 'favicons.html',
+        inject: false
+      }),
+      new WebappWebpackPlugin({
+        logo: resolve(__dirname, 'src', 'images', 'logo_transparent.png'),
+        publicPath: 'assets',
+        outputPath: 'icons',
+        inject: 'force'
+      }),
       new MiniCssExtractPlugin({
         filename: 'css/[name].css',
         chunkFilename: 'css/[id].[hash:5].css'
@@ -150,16 +165,18 @@ module.exports = (options = {}) => {
           to: resolve(__dirname, 'static', 'assets')
         }
       ]),
-      new ImageminPlugin({
-        pngquant: {
-          quality: [0.5, 0.5]
-        },
-        plugins: [
-          imageminMozjpeg({
-            quality: 50
-          })
-        ]
-      }),
+      // new ImageminPlugin({
+      //   pngquant: ({
+      //     quality: 75
+      //   }),
+      //   plugins: [
+      //     imageminMozjpeg({
+      //       progressive: true,
+      //       arithmetic: false,
+      //       quality: 85,
+      //     })
+      //   ],
+      // }),
       new UglifyJsPlugin({
         sourceMap: true
       })
