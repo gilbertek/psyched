@@ -15,68 +15,69 @@
 	</div>
 </section>
 
-{{/*
-<section class="section contact">
-	<div class="container is-fluid">
-		{{ .Content }}
-</div>
-</section>
-*/}}
+<div class="container">
+	<section class="section contact">
+		<div class="container is-fluid">
+			<div class="columns">
+				<div class="column is-6">
 
-<section class="section contact">
-	<div class="container is-fluid">
-		<div class="columns">
-			<div class="column is-6">
-				<h2 class="title">Send a message</h2>
+					<div class="container">
+						<div class="column">
+							<h2 class="title">Send a message</h2>
 
-				<div class="container">
-					{{ partial "contact_form" . }}
+
+							{{ partial "contact_form" . }}
+						</div>
+					</div>
+				</div>
+
+				<div class="column is-6">
+					<div class="container">
+						<div class="column">
+							<h2 class="title">Be in touch</h2>
+							<p>
+								Please feel free to send a message or call with any questions.
+							</p>
+
+							<dl class="contact__list">
+								<div class="contact__item">
+									<dt>Address</dt>
+									<dd>
+										<small>2700 Marigold Lane, Avenue 234</small>
+										<br>
+										<small>68164</small>
+										<br>
+										<small>Omaha, NE</small>
+									</dd>
+								</div>
+
+								<div class="contact__item">
+									<dt>Email</dt>
+									<dd>
+										<small>
+											<a href="mailto:gerald@prosightful.org">gerald@prosightful.org</a>
+										</small>
+									</dd>
+								</div>
+
+								<div class="contact__item">
+									<dt>Phone / Fax</dt>
+									<dd>
+										<a href="tel:+14024152052">+1 402-415-2052</a>
+										<br>
+										<small class="color-contrast-medium">Mon - Fri, 8AM - 8PM</small>
+										<br>
+										<small class="color-contrast-medium">Saturday, 8AM - 8PM</small>
+									</dd>
+								</div>
+							</dl>
+						</div>
+					</div>
 				</div>
 			</div>
-
-			<div class="column is-6">
-				<h2 class="title">Be in touch</h2>
-
-				<p>
-					Please feel free to send a message or call with any questions.
-				</p>
-
-				<dl class="contact__list">
-					<div class="contact__item">
-						<dt>Address</dt>
-						<dd>
-							<small>2700 Marigold Lane, Avenue 234</small>
-							<br>
-							<small>68164</small>
-							<br>
-							<small>Omaha, NE</small>
-						</dd>
-					</div>
-
-					<div class="contact__item">
-						<dt>Email</dt>
-						<dd>
-							<small>
-								<a href="mailto:gerald@prosightful.org">gerald@prosightful.org</a>
-							</small>
-						</dd>
-					</div>
-
-					<div class="contact__item">
-						<dt>Phone / Fax</dt>
-						<dd>
-							<a href="tel:+14024152052">+1 402-415-2052</a>
-							<br>
-							<small class="color-contrast-medium">Mon - Fri, 8AM - 8PM</small>
-							<br>
-							<small class="color-contrast-medium">Saturday, 8AM - 8PM</small>
-						</dd>
-					</div>
-				</dl>
-			</div>
 		</div>
-	</div>
-</section>
+	</section>
+</div>
 
 {{/*
 	<div class="container">
