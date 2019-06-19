@@ -140,7 +140,7 @@ module.exports = (options = {}) => {
       }),
       new ManifestPlugin(),
       new HtmlWebpackPlugin({
-        template: resolve(__dirname, 'layouts', 'partials', 'favicons.html'),
+        // template: resolve(__dirname, 'layouts', 'partials', 'favicons.html'),
         filename: 'favicons.html',
         inject: false
       }),
