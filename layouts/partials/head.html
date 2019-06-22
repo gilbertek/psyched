@@ -7,13 +7,14 @@
   {{ with .Site.Params.description }}
   <meta name="description" content="{{ . }}">{{ end }}
   <meta name="keywords" content="{{ $.Site.Params.keywords }}" />
+  <meta name="theme-color" content="#ffffff" />
 
   {{ with .Site.Params.author }}
   <meta name="author" content="{{ . }}">{{ end }}
 
   <link rel="canonical" href="{{ .Permalink }}" />
 
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script defer src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   {{ range .AlternativeOutputFormats -}}
   {{ printf `<link rel="%s" type="%s+%s" href="%s" title="%s" />` .Rel .MediaType.Type .MediaType.Suffix .Permalink $.Site.Title | safeHTML }}
