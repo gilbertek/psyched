@@ -10,6 +10,7 @@ const imageminMozjpeg = require('imagemin-mozjpeg');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebappWebpackPlugin = require('webapp-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = (options = {}) => {
   const isProduction = options.mode === 'production';
@@ -58,6 +59,12 @@ module.exports = (options = {}) => {
           ]
         },
         {
+          test: /\.(jpe?g|png)$/i,
+          exclude: /\.(svg)$/i,
+          loader: 'responsive-loader',
+          options: {}
+        },
+        {
           test: /\.(png|jp(e*)g|gif|svg)$/i,
           use: [
             {
@@ -83,7 +90,8 @@ module.exports = (options = {}) => {
             {
               loader: 'html-loader',
               options: {
-                minimize: true
+                minimize: true,
+                attrs: [':data-src', ':data-srcset']
               }
             }
           ]
@@ -148,7 +156,8 @@ module.exports = (options = {}) => {
         logo: resolve(__dirname, 'src', 'images', 'logo_transparent.png'),
         publicPath: 'assets',
         outputPath: 'icons',
-        inject: 'force'
+        inject: 'force',
+        title: 'ProSightful Counseling'
       }),
       new MiniCssExtractPlugin({
         filename: 'css/[name].css',
@@ -166,6 +175,7 @@ module.exports = (options = {}) => {
         }
       ]),
       new ImageminPlugin({
+        disable: process.env.NODE_ENV !== 'production',
         pngquant: {
           quality: 75
         },
@@ -179,6 +189,11 @@ module.exports = (options = {}) => {
       }),
       new UglifyJsPlugin({
         sourceMap: true
+      }),
+      new WorkboxPlugin.GenerateSW({
+        swDest: 'js/sw.js',
+        clientsClaim: true,
+        skipWaiting: true
       })
     ]
   };
