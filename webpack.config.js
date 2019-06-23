@@ -7,10 +7,12 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const imageminMozjpeg = require('imagemin-mozjpeg');
+const imageminWebp = require('imagemin-webp');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebappWebpackPlugin = require('webapp-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
+const exclude = [/node_modules/, resolve(__dirname, 'static', 'assets')];
 
 module.exports = (options = {}) => {
   const isProduction = options.mode === 'production';
@@ -37,10 +39,13 @@ module.exports = (options = {}) => {
     module: {
       rules: [
         {
-          test: /\.js$/,
+          test: /\.(j|t)s$/,
           exclude: /node_modules/,
           use: {
-            loader: 'babel-loader'
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: isProduction
+            }
           }
         },
         {
@@ -49,29 +54,55 @@ module.exports = (options = {}) => {
         },
         {
           test: /\.(sa|sc|c)ss$/,
-          exclude: /node_modules/,
+          exclude,
           use: [
-            'style-loader',
-            MiniCssExtractPlugin.loader,
-            'css-loader',
-            'postcss-loader',
-            'sass-loader'
+            {
+              loader: 'style-loader'
+            },
+            {
+              loader: MiniCssExtractPlugin.loader
+            },
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 2,
+                sourceMap: true
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                sourceMap: true
+              }
+            },
+            {
+              loader: 'sass-loader'
+            }
           ]
-        },
-        {
-          test: /\.(jpe?g|png)$/i,
-          exclude: /\.(svg)$/i,
-          loader: 'responsive-loader',
-          options: {}
         },
         {
           test: /\.(png|jp(e*)g|gif|svg)$/i,
           use: [
             {
+              loader: '@brigad/ideal-image-loader',
+              options: {
+                name: 'images/[name].[hash].[ext]',
+                base64: isProduction,
+                webp: isProduction ? undefined : false,
+                warnOnMissingSrcset: !isProduction
+              }
+            }
+          ]
+        },
+        {
+          test: /\.(jpe?g|png|svg|gif)$/i,
+          include: exclude,
+          use: [
+            {
               loader: 'file-loader',
               options: {
-                limit: 8192,
-                outputPath: 'images/'
+                name: 'images/[name].[hash].[ext]',
+                emitFile: false
               }
             }
           ]
@@ -121,21 +152,19 @@ module.exports = (options = {}) => {
       overlay: true // Error overlay to capture compilation related warnings and errors
     },
     optimization: {
-      // runtimeChunk: 'single',
       minimizer: [
         new TerserPlugin({
+          cache: true,
           sourceMap: true,
           parallel: true
         }),
-
         new UglifyJsPlugin({
           cache: true,
           parallel: true,
           sourceMap: true
         }),
-
         new MiniCssExtractPlugin({
-          filename: 'css/[name].[hash:5].css',
+          filename: 'css/[name].css',
           chunkFilename: 'css/[id].[hash:5].css'
         })
       ]
@@ -146,6 +175,9 @@ module.exports = (options = {}) => {
         fetch:
           'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
       }),
+      new webpack.DefinePlugin({
+        __NODE_ENV__: JSON.stringify(options.mode)
+      }),
       new ManifestPlugin(),
       new HtmlWebpackPlugin({
         // template: resolve(__dirname, 'layouts', 'partials', 'favicons.html'),
@@ -154,10 +186,14 @@ module.exports = (options = {}) => {
       }),
       new WebappWebpackPlugin({
         logo: resolve(__dirname, 'src', 'images', 'logo_transparent.png'),
+        cache: true,
         publicPath: 'assets',
         outputPath: 'icons',
         inject: 'force',
-        title: 'ProSightful Counseling'
+        favicons: {
+          appName: 'ProSightful Counseling',
+          developerName: 'Gilbert F. Sewovoe-Ekoue'
+        }
       }),
       new MiniCssExtractPlugin({
         filename: 'css/[name].css',
@@ -172,6 +208,10 @@ module.exports = (options = {}) => {
         {
           from: 'images/**/**',
           to: resolve(__dirname, 'static', 'assets')
+        },
+        {
+          from: 'images/**/**',
+          to: './images/[name].webp'
         }
       ]),
       new ImageminPlugin({
@@ -183,6 +223,10 @@ module.exports = (options = {}) => {
           imageminMozjpeg({
             progressive: true,
             arithmetic: false,
+            quality: 85,
+            sample: ['2x2']
+          }),
+          imageminWebp({
             quality: 85
           })
         ]
@@ -191,9 +235,31 @@ module.exports = (options = {}) => {
         sourceMap: true
       }),
       new WorkboxPlugin.GenerateSW({
-        swDest: 'js/sw.js',
+        swDest: 'sw.js',
         clientsClaim: true,
         skipWaiting: true
+        /*
+        precacheManifestFilename: 'js/precache-manifest.[manifestHash].js',
+        importScripts: [
+          '/assets/js/workbox-catch-handler.js'
+        ],
+        exclude: [
+          /\.(png|jpe?g|gif|svg|webp)$/i,
+          /\.map$/,
+          /^manifest.*\\.js(?:on)?$/,
+        ],
+        offlineGoogleAnalytics: true,
+        runtimeCaching: [{
+          urlPattern: /\.(?:png|jpg|jpeg|svg|webp)$/,
+          handler: 'cacheFirst',
+          options: {
+            cacheName: 'images',
+            expiration: {
+              maxEntries: 20
+            }
+          }
+        }]
+        */
       })
     ]
   };
