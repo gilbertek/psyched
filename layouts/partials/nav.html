@@ -6,13 +6,13 @@
         <img src="/assets/images/logo_transparent.png" alt="{{ .Site.Title }}">
       </a>
       <a role="button" id="nav-toggle" aria-label="menu" aria-expanded="false" data-target="ps-navbar"
-        class="navbar-burger burger">
+        class="navbar-burger">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
       </a>
     </div>
-    <div id="navbar-prosightful" class="navbar-menu">
+    <div id="ps-navbar" class="navbar-menu">
       <div class="navbar-end">
         {{ $currentPage := . }}
         {{ range .Site.Menus.main }}

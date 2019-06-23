@@ -1,0 +1,62 @@
+<!--
+  Ref: https://github.com/jensamunch/starter-hugo/blob/master/layouts/partials/head.html
+
+  https://github.com/jensamunch/starter-hugo/blob/master/layouts/partials/head.html
+
+  Usage:
+
+  {{ $page := . }}
+{{ with $page.Params.cover }}
+  {{ $page.Scratch.Set "original" . }}
+  {{ with $page.Site.GetPage "page" "images" }}
+    {{ with .Resources.GetMatch ($page.Scratch.Get "original") }}
+      {{ $scaled := .Fill "1500x500 Center" }}
+      {{ $page.Scratch.Set "image" $scaled }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ $image := $page.Scratch.Get "image" }}
+
+
+<meta property="og:image:width" content="{{ $image.Width }}" />
+<meta property="og:image:height" content="{{ $image.Width }}" />
+
+or here
+
+<a href="https://www.protel.io/" target="_blank">
+          {{ $img := (resources.Get "images/partners/protel.png") }}
+          <img src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}">
+        </a>
+
+
+  or here
+            {{ with .Params.cover }}
+            {{ $original := resources.Get .  }}
+            {{ $coverScaled := $original.Fill "100x100"  }}
+
+                <div class="col-auto">
+                  <img class="m-3 mx-auto img-fluid pace-circle" src="{{ $coverScaled.RelPermalink }}" width="{{ $coverScaled.Width }}" height="{{ $coverScaled.Height }}">
+                </div>
+
+          {{ end }}
+
+ -->
+
+{{ $original := resources.Get (printf "%s" (.Get 0)) }}
+{{ $command := .Get 1 }}
+{{ $options := .Get 2 }}
+
+{{ if eq $command "Fit"}}
+{{ .Scratch.Set "image" ($original.Fit $options) }}
+{{ else if eq $command "Resize"}}
+{{ .Scratch.Set "image" ($original.Resize $options) }}
+{{ else if eq $command "Fill"}}
+{{ .Scratch.Set "image" ($original.Fill $options) }}
+{{ else }}
+{{ errorf "Invalid image processing command: Must be one of Fit, Fill or Resize."}}
+{{ end }}
+
+{{ $image := .Scratch.Get "image" }}
+<img class="img-fluid py-3 mx-auto" src="{{ $image.RelPermalink }}" width="{{ $image.Width }}"
+  height="{{ $image.Height }}">
